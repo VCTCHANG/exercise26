@@ -2,103 +2,59 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>CSS Image Styling: Flip, No Distortion, Different Middle Image</title>
+    <title>CSS Image Layout Practice</title>
     <style>
         body {
             margin: 0;
-            padding: 50px;
+            padding: 50px 0;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* 讓整組圖片在畫面水平置中 */
             align-items: center;
             min-height: 100vh;
             background-color: #f9f9f9;
         }
 
-        /* 主容器，用於彈性佈局三個子元素 */
-        .flex-wrapper {
-            display: flex;
-            width: 90%;
-            max-width: 1200px;
-            justify-content: space-between;
-            align-items: center;
+        /* 左右兩張照片的容器樣式 */
+        .img-side {
+            width: 33%;           /* 寬度 33% */
+            height: 300px;        /* 高度 300px */
+            display: block;
         }
 
-        /* 圖片容器子元素 (用來定位並隱藏溢出) */
-        .img-child-left,
-        .img-child-right {
-            width: 33%;           /* 尺寸要求 1：寬度 33% */
-            height: 300px;        /* 尺寸要求 1：高度 300px */
-            overflow: hidden;
-            position: relative;
-        }
-
-        .img-child-middle {
-            width: 150px;         /* 尺寸要求 2：寬度 150px (框) */
-            height: 150px;        /* 正圓形框，高度也是 150px */
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* 翻轉容器 (用於實現不會變扁的 3D flip) */
-        .image-flip-box {
-            width: 100%;
-            height: 100%;
-            perspective: 1000px; /* 重要：視角，確保翻轉時圖片在 3D 空間中不變扁 */
-        }
-
-        /* 圖片基本樣式 */
-        .image-flip-box img {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s; /* 翻轉過渡時間 */
-            backface-visibility: hidden; /* 防止翻轉時圖片變透明或閃爍 */
-        }
-
-        /* 要求：要有 flip (這裏設置為鼠標懸停 hover 時水平翻轉) */
-        .image-flip-box:hover img {
-            transform: rotateY(180deg); /* Y 軸旋轉 180 度，水平翻轉 */
-        }
-
-        /* 特定圖片樣式對照 */
-        
-        /* 左側圖片：radius 18px，no distortion */
+        /* 左側圖片：圓角 18px，不變形 */
         .img-left {
-            border-radius: 18px; /* 要求：radius 18px */
-            object-fit: cover;    /* 要求：no distortion (保持比例裁切填滿) */
+            border-radius: 18px;
+            object-fit: cover;    /* No distortion */
         }
 
-        /* 中間圖片：正圓形，border，no distortion，***注意：這裡使用完全不同的圖片網址*** */
-        .img-middle {
-            border-radius: 50%; /* 要求：圓形框 */
-            border: 1px solid #000; /* 細黑邊框，對照圖片標註 border */
-            object-fit: cover;    /* 要求：no distortion */
-        }
-
-        /* 右側圖片：height 300px，distortion */
+        /* 右側圖片：變形（拉伸填充） */
         .img-right {
-            object-fit: fill;     /* 要求：distortion (預設拉伸填充，導致變形) */
+            object-fit: fill;     /* Distortion */
+        }
+
+        /* 中間圓形圖片樣式 */
+        .img-middle {
+            width: 150px;         /* 尺寸 150px */
+            height: 150px;
+            border-radius: 50%;   /* 圓形 */
+            border: 1px solid #000;
+            object-fit: cover;    /* No distortion */
+            
+            /* 重點：與左右兩邊各間距 150px */
+            margin-left: 150px;
+            margin-right: 150px;
+            
+            flex-shrink: 0;       /* 防止圓形圖片被壓縮 */
         }
     </style>
 </head>
 <body>
-    <div class="flex-wrapper">
-        <div class="img-child-left">
-            <div class="image-flip-box">
-                <img src="https://picsum.photos/id/10/800/800" class="img-left" alt="Left Image (No Distortion)">
-            </div>
-        </div>
-        
-        <div class="img-child-middle">
-            <div class="image-flip-box">
-                <img src="https://picsum.photos/id/13/800/800" class="img-middle" alt="Middle Image (Circle No Distortion)">
-            </div>
-        </div>
-        
-        <div class="img-child-right">
-            <div class="image-flip-box">
-                <img src="https://picsum.photos/id/10/800/800" class="img-right" alt="Right Image (Distortion)">
-            </div>
-        </div>
-    </div>
+
+    <img src="https://picsum.photos/id/101/800/800" class="img-side img-left" alt="Left">
+
+    <img src="https://picsum.photos/id/111/400/400" class="img-middle" alt="Middle">
+
+    <img src="https://picsum.photos/id/101/800/800" class="img-side img-right" alt="Right">
+
 </body>
 </html>
