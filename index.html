@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>CSS Image Layout</title>
+    <title>CSS Image Styling</title>
     <style>
         body {
             margin: 0;
@@ -13,18 +13,17 @@
             background-color: #f9f9f9;
         }
 
-        /* 限制容器寬度，這樣 33% 的比例才會跟題目圖片一樣緊湊 */
-        .container {
+        /* 核心修正：限制容器最大寬度，並讓內容置中靠攏 */
+        .wrapper {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 1000px; /* 這裡控制整組圖片不要散開 */
-            gap: 20px;         /* 這裡設定適中的間距 */
-            padding: 20px;
+            justify-content: center; 
+            width: 95%;
+            max-width: 900px; /* 這裡控制整組圖片不要散開到全螢幕 */
+            gap: 15px;        /* 這裡設定適中的小間距，對照題目視覺 */
         }
 
-        /* 左右兩張照片：寬度 33%，高度 300px */
+        /* 左右兩張：寬度 33%，高度 300px */
         .img-side {
             width: 33%;
             height: 300px;
@@ -39,7 +38,7 @@
 
         /* 右側：變形 (拉伸) */
         .img-right {
-            object-fit: fill;
+            object-fit: fill; /* 強制填充達成 Distortion */
         }
 
         /* 中間：圓形，150px，不同照片 */
@@ -49,13 +48,13 @@
             border-radius: 50%;
             border: 1px solid #000;
             object-fit: cover;
-            flex-shrink: 0;
+            flex-shrink: 0; /* 防止圓形被擠壓 */
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="wrapper">
         <img src="https://picsum.photos/id/101/800/800" class="img-side img-left" alt="Left">
 
         <img src="https://picsum.photos/id/111/400/400" class="img-middle" alt="Middle">
