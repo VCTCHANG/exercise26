@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Image Styling Practice</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* 1. 左側圖片：radius 18px, no distortion, width 33% */
+        .img-left {
+            width: 33%;
+            height: 300px;           /* 為了與右側對齊設定高度 */
+            border-radius: 18px;
+            object-fit: cover;       /* 重點：確保不變形並填滿容器 */
+        }
+
+        /* 2. 中間圖片：圓形, 150px, no distortion */
+        .img-middle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;      /* 達成圓形效果 */
+            border: 1px solid #000;  /* 圖片標註有 border 線條 */
+            object-fit: cover;       /* 重點：確保圓框內圖片不變形 */
+        }
+
+        /* 3. 右側圖片：300px height, width 33%, distortion */
+        .img-right {
+            width: 33%;
+            height: 300px;
+            object-fit: fill;        /* 重點：強制拉伸圖片以填充容器，產生變形效果 */
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://picsum.photos/800/800" class="img-left" alt="No Distortion Radius">
+    
+    <img src="https://picsum.photos/800/800" class="img-middle" alt="Circle No Distortion">
+    
+    <img src="https://picsum.photos/800/800" class="img-right" alt="Distortion">
+
+</body>
+</html>
