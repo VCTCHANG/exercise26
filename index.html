@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>CSS Image Styling with Flip and No Distortion</title>
+    <title>CSS Image Styling: Flip, No Distortion, Different Middle Image</title>
     <style>
         body {
             margin: 0;
@@ -67,7 +67,7 @@
             object-fit: cover;    /* 要求：no distortion (保持比例裁切填滿) */
         }
 
-        /* 中間圖片：正圓形，border，no distortion */
+        /* 中間圖片：正圓形，border，no distortion，***注意：這裡使用完全不同的圖片網址*** */
         .img-middle {
             border-radius: 50%; /* 要求：圓形框 */
             border: 1px solid #000; /* 細黑邊框，對照圖片標註 border */
@@ -84,19 +84,19 @@
     <div class="flex-wrapper">
         <div class="img-child-left">
             <div class="image-flip-box">
-                <img src="https://picsum.photos/id/101/800/800" class="img-left" alt="Left Eiffel Tower (No Distortion)">
+                <img src="https://picsum.photos/id/10/800/800" class="img-left" alt="Left Image (No Distortion)">
             </div>
         </div>
         
         <div class="img-child-middle">
             <div class="image-flip-box">
-                <img src="https://picsum.photos/id/111/150/150" class="img-middle" alt="Middle Landscape (No Distortion)">
+                <img src="https://picsum.photos/id/13/800/800" class="img-middle" alt="Middle Image (Circle No Distortion)">
             </div>
         </div>
         
         <div class="img-child-right">
             <div class="image-flip-box">
-                <img src="https://picsum.photos/id/101/800/800" class="img-right" alt="Right Eiffel Tower (Distortion)">
+                <img src="https://picsum.photos/id/10/800/800" class="img-right" alt="Right Image (Distortion)">
             </div>
         </div>
     </div>
